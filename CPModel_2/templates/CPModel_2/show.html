@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<!-- saved from url=(0038)https://www.jianshu.com/p/1635e2e54927 -->
+<html><!--<![endif]-->
+<head>
+    {% load static %}
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+    <meta name="applicable-device" content="pc,mobile">
+    <meta name="MobileOptimized" content="width">
+
+    <title>{{ article.title }}_{{ bc_keyword }}</title>
+    <meta name="keyword" content="{{ article.keyword }},{{ bc_keyword }}">
+    <meta name="description" content="{{ article.description|truncatechars:100 }}_{{ bc_keyword }}">
+
+    <link rel="stylesheet" media="all" href="{% static 'css/web-2b26d78a4d3c053b7b1c.css' %}">
+    <link rel="stylesheet" media="all" href="{% static 'css/entry-7fb4c1aebb52435f09b0.css' %}">
+
+    <link href="{% static 'img/shortcut.ico' %}" rel="shortcut icon" type="image/x-icon">
+    <link rel="apple-touch-icon-precomposed" href="{% static 'img/logo_57x57.png' %}" sizes="57x57">
+    <link rel="apple-touch-icon-precomposed" href="{% static 'img/logo_72x72.png' %}" sizes="72x72">
+    <link rel="apple-touch-icon-precomposed" href="{% static 'img/logo_76x76.png' %}" sizes="76x76">
+    <link rel="apple-touch-icon-precomposed" href="{% static 'img/logo_114x114.png' %}" sizes="114x114">
+    <link rel="apple-touch-icon-precomposed" href="{% static 'img/logo_120x120.png' %}" sizes="120x120">
+    <link rel="apple-touch-icon-precomposed" href="{% static 'img/logo_152x152.png' %}" sizes="152x152">
+
+    <!-- Start of 访问统计 -->
+
+
+    <!-- End of 访问统计 -->
+</head>
+
+<body lang="zh-CN" class="reader-black-font">
+<!-- 全局顶部导航栏 -->
+{% include 'CPModel_2/header.html' %}
+
+<div class="note">
+    <a target="_blank" href="#" id="web-note-ad-fixed"><span class="close">×</span></a>
+    <div class="post">
+        <div class="article">
+            <h1 class="title">{{ article.title }}</h1>
+
+            <!-- 作者区域 -->
+            <div class="author">
+                <a class="avatar" href="#">
+                    <img src="{% static 'img' %}/{{ article.author_img }}" alt="{{ article.author }}">
+                </a>
+                <div class="info">
+                    <span class="name"><a href="#">{{ article.author }}</a></span>
+                    <!-- 关注用户按钮 -->
+                    <a class="btn btn-success follow"><i class="iconfont ic-follow"></i><span>关注</span></a>
+                    <!-- 文章数据信息 -->
+                    <div class="meta">
+                        <!-- 如果文章更新时间大于发布时间，那么使用 tooltip 显示更新时间 -->
+                        <span class="publish-time">{{ article.create_time|date:"Y-m-d H:i:s " }}</span>
+                        <span class="wordage">字数 {{ article.quantity }}</span>
+                        <span class="views-count">阅读 {{ article.read }}</span>
+                        <span class="comments-count">评论 {{ article.comment }}</span>
+                        <span class="likes-count">喜欢 {{ article.like }}</span></div>
+                </div>
+                <!-- 如果是当前作者，加入编辑按钮 -->
+            </div>
+
+
+            <!-- 文章内容 -->
+            <div data-note-content="" class="show-content">
+                <div class="show-content-free">
+                    {% for line in article.context %}
+                        {% if '/static' in line %}
+                            <div class="image-package">
+                                <div class="image-container" style="max-width: 500px; max-height: 377px; background-color: transparent;">
+                                    <div class="image-container-fill" style="padding-bottom: 75.4%;"></div>
+                                    <div class="image-view" data-width="500" data-height="377">
+                                        <img width=100% height=100% data-original-format="image/jpeg" data-original-filesize="27968" alt="{{ article.title }}_{{ bc_keyword }}" style="cursor: zoom-in;" src="{{ line }}">
+                                    </div>
+                                </div>
+                                <div class="image-caption">图/网络</div>
+                            </div>
+                        {% else %}
+                            <p>{{ line|urlizetrunc:15 }}</p>
+                        {% endif %}
+                    {% endfor %}
+
+                </div>
+            </div>
+        </div>
+
+
+
+        <!-- 连载目录项 -->
+
+
+        <!-- 如果是付费连载，已购买，且作者允许赞赏，则显示付费信息和赞赏 -->
+        <div id="free-reward-panel" class="support-author"><p>若值得，就赞赏……</p>
+            <div class="btn btn-pay">赞赏支持</div>
+            <div class="supporter">
+                <ul class="support-list"></ul> <!----></div> <!----> <!----></div>
+
+        <div class="show-foot">
+            <a class="notebook" href="#">
+                <i class="iconfont ic-search-notebook"></i>
+                <span>花瓣</span>
+            </a>
+            <div class="copyright" data-toggle="tooltip" data-html="true" data-original-title="#">
+                © 著作权归作者所有
+            </div>
+            <div class="modal-wrap" data-report-note="">
+                <a id="report-modal">举报文章</a>
+            </div>
+        </div>
+
+    <div class="side-tool">
+        <ul>
+            <li data-placement="left" data-toggle="tooltip" data-container="body" data-original-title="回到顶部" style="display: none;">
+                <a class="function-button"><i class="iconfont ic-backtop"></i></a></li>
+        </ul>
+    </div>
+</div>
+    <div class="note-bottom">
+    <!-- 相关文章 -->
+    <div class="seo-recommended-notes">
+        {% for line in new_article %}
+        <div class="note ">
+            <a class="title" target="_blank" href="{{ line.url }}">{{ line.title }}</a>
+            <p class="description">{{ line.description|truncatechars:200 }}</p>
+            <a class="author" target="_blank" href="{{ line.url }}">
+                <div class="avatar">
+                    <img src="{% static 'img' %}/{{ line.author_img }}" alt="48">
+                </div>
+                <span class="name">{{ line.author }}</span>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+</div>
+</body>
+</html>

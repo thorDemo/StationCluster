@@ -1,10 +1,355 @@
-<!DOCTYPE html>
-<html lang="en">
+﻿<!DOCTYPE html>
+<html lang="cn">
 <head>
-    <meta charset="UTF-8">
-    <title>this is CPModel1</title>
+    {% load static %}
+    <!-- Basic Page Needs   ================================================== -->
+    <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="description" content="{{description}}"/>
+    <meta name="keywords" content="{{keywords}}"/>
+    
+    <title>{{ title }}</title>
+
+    <!-- Mobile Specific Metas  ================================================== -->
+    <meta name="viewport"
+          content="width=device-width,user-scalable=no, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/news.css' %}"/>
 </head>
 <body>
-    <h1>this is CPModel1</h1>
+<div class="blogchina_index">
+    <!-- 登录 -->
+    <div class="header">
+        <div class="lt">
+            <h1 class="avatar"><a target='_blank' href="/"><img src="{% static 'images/full/1a2c337333228b1c0e50a2b65413aa75cd790e6c.jpg' %}"></a></h1>
+        </div>
+
+        <div class="cnt"><img src="{% static 'images/title.gif' %}"></div>
+        <div class="user_login_all">
+            <!--<a class="star_pr" href=""></a>-->
+            <!-- JiaThis Button BEGIN -->
+            <div class="jiathis_style_24x24" style="  display: block;  float: left;  margin:7px 14px;  width: 19px;  overflow: hidden;">
+                <a href="/{{ list_article.list_name }}/" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"
+                   style="background:url('{% static 'images/shares_pr.png' %}')"></a>
+            </div>
+            <!-- JiaThis Button END -->
+            <a class="phone_pr" href="" target="_blank"></a>
+            <a class="search_pr" href="" target="_blank"></a>
+
+            <div id='userislocallogin'>
+
+                <div class="user_login">
+                    <a class="avatar" id="user_app" href="javascript:void(0)">
+                        <span id='useravatar'> <img alt="100" src=""></span><em id='loginnick'></em><b
+                            class="arrow_down"></b></a>
+                </div>
+
+                <div class="user_login_no">
+                    <a class="txt userindexlogin" href="">登录<i style="font-style:normal;font-size:14px">/&nbsp;专栏申请</i></a>
+                </div>
+
+            </div>
+        </div>
+        <!-- 登录end!-->
+
+    </div>
+
+    <!-- 导航条 -->
+    <div class="content">
+        <ul class="nav">
+            <li class="no_bg"><a target="_blank" class='cur' href="/"> 首页 </a></li>
+            {% for line in list_article %}
+            <li><a target='_blank' href="/{{ line.list_name }}/"> {{ line.list_ch }} </a></li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div class="content">
+        <!-- 大图 -->
+        <div class="news_one">
+            <h2 class="tit"><a href="/show/{{ new_article_3_1.0.re_id }}/" id="graphics_title" target="_blank">{{ new_article_3_1.0.title }}</a></h2>
+            <a href=/show/{{ new_article_3_1.0.re_id }}/" class="avatar" id="graphics_link" target="_blank"><img id="graphics_pic" src="/static/img/full/{{ new_article_3_1.0.img.0 }}"></a>
+        </div>
+
+        <ul class="news_rest">
+            {% for line in new_article_3_1 %}
+            <li class="articlenumber">
+                <h2 class="tit"><a target="_blank" href="/show/{{ line.re_id }}/">{{ line.title }}</a></h2>
+                <p class="article" style="word-wrap:break-word"><a target="_blank" href="/show/{{ line.re_id }}/">{{ line.keyword }}</a></p>
+                <p class="ins right">
+                    <a target="_blank" href="/show/{{ line.re_id }}/">参与 <span class="first_comment_article_num_631269436">{{ line.read }}</span></a>
+                    <a target="_blank" href="/show/{{ line.re_id }}/">评论<span class="first_comment_num_631269436">{{ line.comment }}</span></a>
+                    <a target="_blank" href="/show/{{ line.re_id }}/">支持 <span class="first_support_num_631269436">{{ line.like }}</span></a>
+                </p>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="content">
+        <!-- 头条 -->
+        <div class="news_pictures abc" >
+            <h2 class="tit_big"><a href=""></a></h2>
+
+            <ul>
+                {% for line in new_article_10_1 %}
+                <li class="articlenumber">
+                    <h2 class="tit"><a target="_blank" href="/show/{{ line.re_id }}/">{{ line.title }}</a></h2>
+                    <div class="news_list">
+                        <a target='_blank' href="/show/{{ line.re_id }}/" class="avatar"><img src="/static/img/full/{{ line.img.0 }}"></a>
+                        <div class="rt">
+                            <p class="writer">
+                                <a target='_blank' href="/show/{{ line.re_id }}/"><span></span>{{ line.keyword|truncatechars:20 }}</a>
+                            </p>
+                            <p class="rt">
+                                <strong>{{ line.create_time }}</strong>
+                            </p>
+                            <p class="job_tit">专栏作家</p>
+                            <p class="ins">
+                                <a target='_blank' href="/show/{{ line.re_id }}/">参与
+                                    <span class="comment_article_num_708664863">{{ line.read }}</span>
+                                </a>
+                                <a target='_blank' href="/show/{{ line.re_id }}/">评论
+                                    <span class="comment_num_708664863">{{ line.commennt }}</span>
+                                </a>
+                                <a target='_blank' href="/show/{{ line.re_id }}/">支持
+                                    <span class="support_num_708664863">{{ line.like }}</span>
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="article"><a target='_blank' href="/show/{{ line.re_id }}/" class="avatar">{{ line.context|truncatechars:80 }}...<span>[全文]</span></a></div>
+                </li>
+                {% endfor %}
+            </ul>
+            <div class="click_expand"><a href="/{{ list_article.list_name }}/" target='_blank'><span>查看更多>></span></a></div>
+        </div>
+        <!-- 聚焦 -->
+
+        <div class="news_pictures">
+            <h2 class="tit_jbig"><a href=""></a></h2>
+             <ul>
+                {% for line in new_article_10_2 %}
+                <li class="articlenumber">
+                    <h2 class="tit"><a target="_blank" href="/show/{{ line.re_id }}/">{{ line.title }}</a></h2>
+                    <div class="news_list">
+                        <a target='_blank' href="/show/{{ line.re_id }}/" class="avatar"><img src="/static/img/full/{{ line.img.0 }}"></a>
+                        <div class="rt">
+                            <p class="writer">
+                                <a target='_blank' href="/show/{{ line.re_id }}/"><span></span>{{ line.keyword|truncatechars:20 }}</a>
+                            </p>
+                            <p class="rt">
+                                <strong>{{ line.create_time }}</strong>
+                            </p>
+                            <p class="job_tit">专栏作家</p>
+                            <p class="ins">
+                                <a target='_blank' href="/show/{{ line.re_id }}/">参与
+                                    <span class="comment_article_num_708664863">{{ line.read }}</span>
+                                </a>
+                                <a target='_blank' href="/show/{{ line.re_id }}/">评论
+                                    <span class="comment_num_708664863">{{ line.commennt }}</span>
+                                </a>
+                                <a target='_blank' href="/show/{{ line.re_id }}/">支持
+                                    <span class="support_num_708664863">{{ line.like }}</span>
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="article"><a target='_blank' href="/show/{{ line.re_id }}/" class="avatar">{{ line.context|truncatechars:80 }}...<span>[全文]</span></a></div>
+                </li>
+                {% endfor %}
+            </ul>
+            <div class="click_expand"><a href="/{{ list_article.list_name }}/" target='_blank'><span>查看更多>></span></a></div>
+        </div>
+        <div class="news_focus">
+            <div class="gg"><a target='_blank' href="/{{ list_article.list_name }}/"><img src="{% static 'images/wangxingban.jpg' %}"></a>
+            </div>
+            <div class="focus">
+                <h2 class="tit"><img src="{% static 'images/focus_h2.png' %}"><strong><img
+                        src="{% static 'images/focus_h2_e.png' %}"></strong><img
+                        src="{%  static 'images/h2_bottom_tip.png' %}"><span><a target='_blank' href="/{{ list_article.list_name }}/">更多</a></span>
+                </h2>
+                <div class="focus_list">
+
+                    <ul id="listdiv1">
+                        <li><a target="_blank" href="{{ show_url }}">文章标题</a></li>
+                    </ul>
+                    <ul id="listdiv1">
+                        <li><a target="_blank" href="{{ show_url }}">文章标题</a></li>
+                    </ul>
+                    {% for line in range %}
+                    <ul id="listdiv2">
+                        <li><a target="_blank" href="{{ show_url }}">文章标题</a></li>
+                        <li><a target="_blank" href="{{ show_url }}">文章标题</a></li>
+                    </ul>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="gg"><a target='_blank' href="/{{ list_article.list_name }}/"><img src="{% static 'images/st.jpg' %}"></a></div>
+
+
+            <!-- 知名专栏 -->
+            <div class="columnist_ranking">
+                <h2 class="tit"><img src="{% static 'images/columnist_ranking_h2.png' %}"><strong><img
+                        src="{% static 'images/columnist_ranking_h2_e.png' %}"></strong><img
+                        src="{% static 'images/h2_bottom_tip.png' %}"></h2>
+                <ul id="userauthor">
+                    {% for line in range %}
+                    <li class="usernames"><a target="_blank" href="/{{ list_article.list_name }}/" class="avatar"><img src="{{ img_url }}"></a>
+                        <div class="rt"><p class="writer"><a target="_blank" href="/{{ list_article.list_name }}/"><img
+                                src="{% static 'images/h_culli1.png' %}">{{ list_name }}</a></p>
+                            <p class="writer"><a target="_blank" href="/{{ list_article.list_name }}/"><img
+                                    src="{% static 'images/h_cullicik.png' %}"> <em>{{ random_num_4 }}</em></a><a
+                                    target="_blank" href="/{{ list_article.list_name }}/"><img src="{% static 'images/h_culliread.png' %}">
+                                <em>{{ random_num_3 }}</em></a></p>
+                            <dl class="rest">
+                                <dd><a target="_blank" href="{{ show_url }}">文章标题</a></dd>
+                                <dd><a target="_blank" href="{{ show_url }}">文章标题</a></dd>
+                            </dl>
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <div class="latest_comments">
+                <h2 class="tit"><img src="{% static 'images/latest_comments_h2.png' %}"><strong><img
+                        src="{% static 'images/latest_comments_h2_e.png' %}"></strong><img
+                        src="{% static 'images/h2_bottom_tip.png' %}"></h2>
+                <ul id="commentdata">
+                    {% for line in range %}
+                    <li class="articlebid">
+                        <div class="comments"><a target="_blank" href="/{{ list_article.list_name }}/" class="avatar"><img src="{{ img_url }}"></a>
+                            <p class="article"><a target="_blank" href="{{ show_url }}">文章标题</a></p></div>
+                        <div class="ins"><a target="_blank" href="/{{ list_article.list_name }}/">参与 <span
+                                class="comment_participation_883063352">[{{ random_num_4 }}]</span></a></div>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <!-- 话题加载 -->
+            <div class="talk">
+                <div class="talk_list">
+                    <h2 class="title"><a href="{{ show_url }}" id="toptitlelink" target="_blank">文章标题</a></h2>
+                    <dl class="rest" id="correlatetitle">
+                        {% for line in range %}
+                        <dd><a target="_blank" href="{{ show_url }}">文章标题</a></dd>
+                        {% endfor %}
+                    </dl>
+                </div>
+            </div>
+
+            <div class="columnist">
+                <h2 class="tit"><img src="{% static 'images/columnist_h2.png' %}"><strong><img
+                        src="{% static 'images/columnist_h2_e.png' %}"></strong><img
+                        src="{% static 'images/h2_bottom_tip.png' %}"><span><a target='_blank' href="/{{ list_article.list_name }}/">更多</a></span>
+                    <!--<span><em>*</em>按字母顺序排列</span>--></h2>
+                <div class="columnist_category">
+                    <ul>
+                        <li class="cur" id="politics">时政</li>
+                        <li id="tech">科技</li>
+                        <li id="finance">财经</li>
+                        <li id="entertain">娱乐</li>
+                        <li id="media">传媒</li>
+                        <li id="chistory">文史</li>
+                    </ul>
+                    <!-- <span class="prev"></span> <span class="next"></span>--> </div>
+                <div class="columnist_list">
+                    <dl id="usermarkauthor">
+                        {% for line in range %}
+                        <dd><a target="_blank" href="/{{ list_article.list_name }}/" class="avatar"><img src="{{ img_url }}"></a>
+                            <p class="writer"><a href="/{{ list_article.list_name }}/">{{ list_name }}</a></p></dd>
+                        {% endfor %}
+                    </dl>
+                </div>
+            </div>
+
+
+            <div class="news_img">
+                <h2 class="tit"><img src="{% static 'images/news_img_h2.png' %}"><strong><img
+                        src="{% static 'images/news_img_h2_e.png' %}"></strong><img
+                        src="{% static 'images/h2_bottom_tip.png' %}"><span><a target='_blank' href="/{{ list_article.list_name }}/">更多</a></span>
+                </h2>
+                <ul id="newspecial">
+                    {% for line in range %}
+                    <li><a target="_blank" href="/{{ list_article.list_name }}/" class="avatar">{{ img_name }}<span class="n_pictures_t"></span><span
+                            class="n_pictures_b"></span></a>
+                        <h2 class="title"><a target="_blank" href="{{ show_url }}">文章标题</a></h2></li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="popular_articles">
+                <h3 class="tit">热门文章</h3>
+                <dl class="articles_category" id="articles_fadetab">
+                    <dd class="cur" id="hotarticle1"><span>48时</span></dd>
+                    <dd id="hotarticle2"><span>一周</span></dd>
+                    <dd id="hotarticle3"><span>一月</span></dd>
+                </dl>
+                <div class="popular_articles_list" id="articles_fadecon">
+                    <ul class="sublist">
+                        {% for line in range %}
+                        <li><em>[{{ random_num_4 }}]</em><a target="_blank" href="{{ show_url }}">文章标题</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+
+            <div class="popular_articles"><!-- popular_comments -->
+                <h3 class="tit">热门评论</h3>
+                <dl class="articles_category" id="comments_fadetab">
+                    <dd class="cur" id="hotcomment1"><span>48时</span></dd>
+                    <dd id="hotcomment2"><span>一周</span></dd>
+                    <dd id="hotcomment3"><span>一月</span></dd>
+                </dl>
+                <div class="popular_articles_list" id="comments_fadecon"><!-- popular_comments_list -->
+                    <ul class="sublist">
+                        {% for line in range %}
+                        <li><em>[{{ random_num_4 }}]</em><a target="_blank" href="{{ show_url }}">文章标题</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            <div class="popular_articles">
+                <h3 class="tit">热门支持率</h3>
+                <dl class="articles_category" id="supportrate_fadetab">
+                    <dd class="cur" id="hotsupport1"><span>48时</span></dd>
+                    <dd id="hotsupport2"><span>一周</span></dd>
+                    <dd id="hotsupport3"><span>一月</span></dd>
+                </dl>
+                <div class="popular_articles_list" id="supportrate_fadecon">
+                    <ul class="sublist">
+                        {% for line in range %}
+                        <li><em>[{{ random_num_4 }}]</em><a target="_blank" href="{{ show_url }}">文章标题</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="footer">
+    <p>
+        <a target='_blank' href="/{{ list_article.list_name }}/">网站定位</a> |
+        <a target='_blank' href="/{{ list_article.list_name }}/">历史由来</a> |
+        <a target='_blank' href="/{{ list_article.list_name }}/">发展历程</a> |
+        <a target='_blank' href="/{{ list_article.list_name }}/">联系主编</a> |
+        <a target='_blank' href="/{{ list_article.list_name }}/">联系我们</a> |
+        <a target='_blank' href="/{{ list_article.list_name }}/">广告服务</a> |
+        <a target='_blank' href="/{{ list_article.list_name }}/">诚聘精英</a>
+    </p>
+    <p>
+        {权重池} |
+    </p>
+    &copy; Copyright 2001 - 2019 {品牌词} All Rights Reserved<br/>
+    客户服务热线：{随机数字}　客服邮箱：{随机字符}　 违法和不良信息举报电话：{随机数字}　举报邮箱：{随机字符}
+    <p class="img"><a target='_blank' href="/{{ list_article.list_name }}/"><img src="{% static 'images/blxx.png' %}"></a><a
+            target='_blank' href="/{{ list_article.list_name }}/"><img src="{% static 'images/hlw_jb.jpg' %}"></a></p>
+
+</div>
+
 </body>
 </html>
