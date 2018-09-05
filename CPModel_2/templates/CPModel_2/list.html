@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<!-- saved from url=(0086)https://www.jianshu.com/c/8c92f845cd4d?utm_medium=index-collections&utm_source=desktop -->
+<html><!--<![endif]-->
+<head>
+    {% load static %}
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+
+    <!-- Start of Baidu Transcode -->
+    <meta name="applicable-device" content="pc,mobile">
+    <meta name="MobileOptimized" content="width">
+    <meta name="HandheldFriendly" content="true">
+    <meta name="mobile-agent" content="">
+    <!-- End of Baidu Transcode -->
+
+    <meta name="description" content="">
+
+
+    <!-- Apple -->
+    <meta name="apple-mobile-web-app-title" content="简书">
+
+
+    <title>{{ list_message.list_ch }}</title>
+
+    <link rel="stylesheet" media="all" href="{% static 'css/web-2b26d78a4d3c053b7b1c.css' %}">
+
+    <link rel="stylesheet" media="all" href="{% static '/css/entry-b92af14ed8ebe3efb6ff.css' %}">
+
+    <link href="{% static 'img/shortcut.ico' %}" rel="shortcut icon" type="image/x-icon">
+    <link rel="apple-touch-icon-precomposed" href="{% static 'img/logo_57x57.png' %}" sizes="57x57">
+    <link rel="apple-touch-icon-precomposed" href="{% static 'img/logo_72x72.png' %}" sizes="72x72">
+    <link rel="apple-touch-icon-precomposed" href="{% static 'img/logo_76x76.png' %}" sizes="76x76">
+    <link rel="apple-touch-icon-precomposed" href="{% static 'img/logo_114x114.png' %}" sizes="114x114">
+    <link rel="apple-touch-icon-precomposed" href="{% static 'img/logo_120x120.png' %}" sizes="120x120">
+    <link rel="apple-touch-icon-precomposed" href="{% static 'img/logo_152x152.png' %}" sizes="152x152">
+
+    <!-- Start of 访问统计 -->
+
+  
+</head>
+
+<body lang="zh-CN" class="reader-black-font" style="overflow-y: scroll;">
+<!-- 全局顶部导航栏 -->
+{% include 'CPModel_2/header.html' %}
+
+
+<div class="container collection">
+    <div class="row">
+        <div class="col-xs-24 col-sm-16 main">
+            <!-- 专题头部模块 -->
+            <div class="main-top">
+                <a class="avatar-collection" href="/list/{{ list_message.list_name }}">
+                    <img src="{% static 'img' %}/{{ list_message.list_img }}" alt="240">
+                </a> <a class="btn btn-success follow"><i class="iconfont ic-follow"></i><span>关注</span></a>
+                <a class="btn btn-hollow"
+                   href="">投稿</a>
+
+                <div class="title">
+                    <a class="name" href="">{{ list_message.list_ch }}</a>
+                </div>
+                <div class="info">
+                    收录了118021篇文章 · 1471597人关注
+                </div>
+            </div>
+            <ul class="trigger-menu" data-pjax-container="#list-container">
+                <li class="active"><a href="#"><i class="iconfont ic-latestcomments"></i> 最新评论</a></li>
+                <li class=""><a href="#"><i class="iconfont ic-articles"></i> 最新收录</a></li>
+                <li class=""><a href="#"><i class="iconfont ic-hot"></i> 热门</a></li>
+            </ul>
+            <div id="list-container"><!-- 文章列表模块 -->
+                <ul class="note-list">
+                {% for line in list_article %}
+                    <li id="{{ line.re_id }}" class="have-img">
+                        <a class="wrap-img" href="/show/{{ line.id }}" target="_blank">
+                            <img class="  img-blur-done" src="{% static 'img/full' %}/{{ line.img.0 }}" alt="120">
+                        </a>
+                        <div class="content">
+                            <a class="title" target="_blank" href="/show/{{ line.re_id }}">{{ line.title }}</a>
+                            <p class="abstract">
+                                {{ line.description|truncatechars:100 }}
+                            </p>
+                            <div class="meta">
+                                <a class="nickname" target="_blank" href="/list-{{ line.author }}/">{{ line.author }}</a>
+                                <a target="_blank" href="/show/{{ line.re_id }}">
+                                    <i class="iconfont ic-list-comments"></i> {{ line.comment }}
+                                </a> <span><i class="iconfont ic-list-like"></i> {{ line.like }}</span>
+                            </div>
+                        </div>
+                    </li>
+                {% endfor %}
+
+                </ul>
+            </div>
+        </div>
+        <div class="col-xs-24 col-sm-7 col-sm-offset-1 aside">
+            <p class="title">专题公告</p>
+            <div class="description js-description">
+                <p>xxxxxxx</p>
+
+                <p>xxxx</p>
+
+                <p>xxxx</p>
+
+                <p>xxx</p>
+
+                <p>专题...</p>
+                <a data-action="toggle-description">展开描述 <i class="iconfont ic-show"></i></a>
+            </div>
+            <div class="share">
+                <span>分享到</span>
+                <a class="option"></a>
+                <a class="option" data-action="weixin-share"><i class="iconfont ic-share-wechat"></i></a>
+                <a class="option" ></a>
+            </div>
+            <div>
+                <div><p class="title">管理员</p>
+                    <ul class="list collection-editor">
+                        {% for line in xxx %}
+                        <li>
+                            <a href="#" target="_blank" class="avatar"><img
+                                    src="{% static 'img/5210859b-fc54-4cf8-908f-830f0237926a.png' %}"></a>
+                            <a href="#" target="_blank" class="name">简书</a>
+                            <span class="tag">创建者</span></li>
+                        {% endfor %}
+
+                        <li><a class="check-more">展开更多 <i class="iconfont ic-show"></i></a> <!----></li>
+                    </ul>
+
+                </div>
+                <div>
+                    <div class="title">
+                        推荐作者(30)
+                        <i class="iconfont ic-navigation-help"></i> <!----></div>
+                    <ul class="list collection-follower">
+                        <li><a href="#" target="_blank" class="avatar"><img
+                                src="{% static 'img/d70270ff-062e-46a5-bfce-d73e6c24c921.jpg' %}"
+                                data-toggle="tooltip" data-placement="bottom" title="" data-original-title="桔子爱生活"></a>
+                        </li>
+                        <li><a href="#" target="_blank" class="avatar"><img
+                                src="{% static 'img/0b444f3a9032.jpg' %}" data-toggle="tooltip"
+                                data-placement="bottom" title="" data-original-title="野兔丫"></a></li>
+                        <li><a href="#" target="_blank" class="avatar"><img
+                                src="{% static 'img/d70270ff-062e-46a5-bfce-d73e6c24c921.jpg' %}"
+                                data-toggle="tooltip" data-placement="bottom" title="" data-original-title="桔子爱生活"></a>
+                        </li>
+                        <li><a href="#" target="_blank" class="avatar"><img
+                                src="{% static 'img/0b444f3a9032.jpg' %}" data-toggle="tooltip"
+                                data-placement="bottom" title="" data-original-title="野兔丫"></a></li>
+                        <li><a href="#" target="_blank" class="avatar"><img
+                                src="{% static 'img/d70270ff-062e-46a5-bfce-d73e6c24c921.jpg' %}"
+                                data-toggle="tooltip" data-placement="bottom" title="" data-original-title="桔子爱生活"></a>
+                        </li>
+                        <li><a href="#" target="_blank" class="avatar"><img
+                                src="{% static 'img/0b444f3a9032.jpg' %}" data-toggle="tooltip"
+                                data-placement="bottom" title="" data-original-title="野兔丫"></a></li>
+
+                        <a class="function-btn"><i class="iconfont ic-others"></i></a> <!----></ul>
+                </div>
+                <div>
+                    <div class="title">关注的人(1471597)</div>
+                    <ul class="list collection-follower">
+                        {% for line in xxx %}
+                        <li>
+                            <a href="#" target="_blank" class="avatar"><img
+                                src="{% static 'img/0523f2d4-47a4-444f-948e-06e3e8eb115b' %}"
+                                data-toggle="tooltip" data-placement="bottom" title=""
+                                data-original-title="顾盼神飞godfather · 1分钟前 关注"></a></li>
+                        <li>
+                        {% endfor %}
+                        <a class="function-btn"><i class="iconfont ic-others"></i></a> <!----></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="side-tool">
+    <ul>
+        <li data-placement="left" data-toggle="tooltip" data-container="body" data-original-title="回到顶部"
+            style="display: none;"><a class="function-button"><i class="iconfont ic-backtop"></i></a></li> <!---->
+        <!----> <!----> <!----> <!----></ul>
+</div>
+
+
+
+<!----><!----></body>
+</html>
