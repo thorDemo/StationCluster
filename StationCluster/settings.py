@@ -31,7 +31,6 @@ ALLOWED_HOSTS = ['127.0.0.1', 'www.example1.com', 'www.example2.com']
 # Application definition
 
 INSTALLED_APPS = [
-    # 'django_hosts',
     'CPModel_1.apps.CPModel1Config',
     'CPModel_2.apps.CPModel2Config',
     'CPModel_3.apps.CPModel3Config',
