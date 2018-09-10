@@ -25,7 +25,7 @@ SECRET_KEY = 'ulb+pe%d6^s4mdp3yb%&l30judz4(&@(6b9idq*(uu&o2_976x'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'www.example1.com', 'www.example2.com']
+ALLOWED_HOSTS = ['127.0.0.1', 'www.bjgirls.cn', 'www.bjdirectory.cn', 'bjflowers.cn']
 
 
 # Application definition
@@ -55,9 +55,9 @@ MIDDLEWARE = [
 ]
 
 MULTIPLE_UFL_CONFIG = {
-    'www.example1.com': 'StationCluster.urls_1',
-    'www.example2.com': 'StationCluster.urls_2',
-    'www.example3.com': 'StationCluster.urls_3',
+    'www.bjgirls.cn': 'StationCluster.urls_1',
+    'www.bjdirectory.cn': 'StationCluster.urls_2',
+    'www.bjflowers.cn': 'StationCluster.urls_3',
 }
 
 ROOT_URLCONF = 'StationCluster.urls_1'
@@ -90,7 +90,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'station',
-        'USER': 'root',
+        'USER': 'station',
         'PASSWORD': '123456',
         'HOST': '127.0.0.1',
         'PORT': '3306',

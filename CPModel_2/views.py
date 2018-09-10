@@ -19,7 +19,7 @@ re_url = 'www.aidshe.com'   # 改为站群的域名
 ############
 
 
-@cache_page(60 * 60 * 2)
+@cache_page(60 * 60 * 12)
 def index(request):
     """
     缓存时间2小时
