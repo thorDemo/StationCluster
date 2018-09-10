@@ -57,7 +57,9 @@ MIDDLEWARE = [
 MULTIPLE_UFL_CONFIG = {
     'www.bjgirls.cn': 'StationCluster.urls_1',
     'www.bjdirectory.cn': 'StationCluster.urls_2',
-    'www.bjflowers.cn': 'StationCluster.urls_3',
+    'www.bjflowers.cn': 'StationCluster.urls_2',
+    'www.example1.com': 'StationCluster.urls_2',
+    'www.example2.com': 'StationCluster.urls_2',
 }
 
 ROOT_URLCONF = 'StationCluster.urls_1'
@@ -86,16 +88,28 @@ WSGI_APPLICATION = 'StationCluster.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'station',
+#         'USER': 'station',
+#         'PASSWORD': '123456',
+#         'HOST': '127.0.0.1',
+#         'PORT': '3339',
+#     }
+# }
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'station',
-        'USER': 'station',
+        'USER': 'root',
         'PASSWORD': '123456',
         'HOST': '127.0.0.1',
-        'PORT': '3339',
+        'PORT': '3306',
     }
 }
+
 
 
 # Password validation
