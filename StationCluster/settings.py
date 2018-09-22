@@ -25,7 +25,7 @@ SECRET_KEY = 'ulb+pe%d6^s4mdp3yb%&l30judz4(&@(6b9idq*(uu&o2_976x'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'www.bjgirls.cn', 'www.bjdirectory.cn', 'bjflowers.cn']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
