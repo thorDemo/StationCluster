@@ -3,8 +3,8 @@
 <html><!--<![endif]-->
 <head>
     {% load static %}
+    {% load thumbnail %}
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
 
@@ -14,31 +14,22 @@
     <meta name="HandheldFriendly" content="true">
     <meta name="mobile-agent" content="">
     <!-- End of Baidu Transcode -->
-
     <meta name="description" content="">
-
-
     <!-- Apple -->
     <meta name="apple-mobile-web-app-title" content="简书">
 
-
     <title>{{ list_message.list_ch }}</title>
 
-    <link rel="stylesheet" media="all" href="{% static 'css/web-2b26d78a4d3c053b7b1c.css' %}">
-
-    <link rel="stylesheet" media="all" href="{% static '/css/entry-b92af14ed8ebe3efb6ff.css' %}">
-
-    <link href="{% static 'img/shortcut.ico' %}" rel="shortcut icon" type="image/x-icon">
+    <link rel="stylesheet" media="all" href="{% static 'css/list.css' %}">
+    <link href="Tools/logo/{{ logo }}.png" rel="shortcut icon" type="image/x-icon">
     <link rel="apple-touch-icon-precomposed" href="{% static 'img/logo_57x57.png' %}" sizes="57x57">
     <link rel="apple-touch-icon-precomposed" href="{% static 'img/logo_72x72.png' %}" sizes="72x72">
     <link rel="apple-touch-icon-precomposed" href="{% static 'img/logo_76x76.png' %}" sizes="76x76">
     <link rel="apple-touch-icon-precomposed" href="{% static 'img/logo_114x114.png' %}" sizes="114x114">
     <link rel="apple-touch-icon-precomposed" href="{% static 'img/logo_120x120.png' %}" sizes="120x120">
     <link rel="apple-touch-icon-precomposed" href="{% static 'img/logo_152x152.png' %}" sizes="152x152">
-
     <!-- Start of 访问统计 -->
 
-  
 </head>
 
 <body lang="zh-CN" class="reader-black-font" style="overflow-y: scroll;">
@@ -52,7 +43,9 @@
             <!-- 专题头部模块 -->
             <div class="main-top">
                 <a class="avatar-collection" href="/list/{{ list_message.list_name }}">
-                    <img src="{% static 'img' %}/{{ list_message.list_img }}" alt="240">
+                    {% thumbnail list_message.photo "485x210" quality=50 as im %}
+                    <img src="/{{ im.url }}" alt="240">
+                    {% endthumbnail %}
                 </a> <a class="btn btn-success follow"><i class="iconfont ic-follow"></i><span>关注</span></a>
                 <a class="btn btn-hollow"
                    href="">投稿</a>
@@ -73,17 +66,17 @@
                 <ul class="note-list">
                 {% for line in list_article %}
                     <li id="{{ line.re_id }}" class="have-img">
-                        <a class="wrap-img" href="/show/{{ line.id }}" target="_blank">
+                        <a class="wrap-img" href="/show/{{ line.id }}/" target="_blank">
                             <img class="  img-blur-done" src="{% static 'img/full' %}/{{ line.img.0 }}" alt="120">
                         </a>
                         <div class="content">
-                            <a class="title" target="_blank" href="/show/{{ line.re_id }}">{{ line.title }}</a>
+                            <a class="title" target="_blank" href="/show/{{ line.re_id }}/">{{ line.title }}</a>
                             <p class="abstract">
                                 {{ line.description|truncatechars:100 }}
                             </p>
                             <div class="meta">
                                 <a class="nickname" target="_blank" href="/list-{{ line.author }}/">{{ line.author }}</a>
-                                <a target="_blank" href="/show/{{ line.re_id }}">
+                                <a target="_blank" href="/show/{{ line.re_id }}/">
                                     <i class="iconfont ic-list-comments"></i> {{ line.comment }}
                                 </a> <span><i class="iconfont ic-list-like"></i> {{ line.like }}</span>
                             </div>

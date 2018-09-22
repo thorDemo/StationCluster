@@ -2,7 +2,7 @@ from django.shortcuts import render, get_list_or_404
 from django.http import HttpResponse, Http404
 from django.urls import reverse
 from django.template import loader
-from .models import NewsArticle, ListArticle, ArticleAuthor
+from .models import *
 from django.views.decorators.cache import cache_page
 from django.shortcuts import redirect
 import os
@@ -11,6 +11,7 @@ import linecache
 import json
 from subprocess import PIPE, Popen
 from CPModel_2.spider import Spider
+
 # 配置信息
 ############
 path = os.path.split(os.path.realpath(__file__))[0]     # 根目录
@@ -28,31 +29,39 @@ def index(request):
     :param request:
     :return:
     """
-    url = request.META
-    print('take in')
-    print(url)
+    meta = request.META
+    url = meta['HTTP_X_FORWARDED_HOST']
     new_article = NewsArticle.objects.order_by('?')[:30]
     template = loader.get_template('CPModel_2/index.html')
     list_article = ListArticle.objects.order_by('-list_name')[:7]
+    domain = DomainConf.objects.get(domain__exact=url)
     temp = 0
     for line in new_article:
         img = line.img.split(',')
-        new_article[temp].img = img
+        pic = []
+        for line in img:
+            pic.append('CPModel_2/templates/CPModel_2/static/img/full/' + line)
+        new_article[temp].img = pic
         temp += 1
-
+    logo = url.split('.')[1]
     context = {
+        'domain': url,
+        'logo': logo,
         'new_article': new_article,
         'list_article': list_article,
-        'title': '香港生活_赌场游戏名字_大世界娱乐平台',
-        'keywords': '最好平台，真人在线，香港生活，香港娱乐，香港赛马，香港美食',
-        'description': '香港生活线上娱乐平台为您提供体育赛事，视讯直播，电子游艺，彩票游戏，香港娱乐，香港赛马，香港美食。香港生活是“亚洲最受玩家喜爱品牌”，如今也成为亚洲最具有领导地位的顶级娱乐平台，拥有15年资深行业经验，8项设计系统保障，在线玩家超过10000+，96%客户满意度，我们将竭诚为您服务，为您提供顶级娱乐享受。',
+        'title': domain.index_title,
+        'keywords': domain.index_keywords,
+        'description': domain.index_description,
     }
+    print(context)
     return HttpResponse(template.render(context, request))
 
 
 @cache_page(60 * 60 * 2)
 def list_page(request, list_name):
-    print(list_name)
+    meta = request.META
+    url = meta['HTTP_X_FORWARDED_HOST']
+    logo = url.split('.')[1]
     try:
         list_message = ListArticle.objects.get(list_name__exact=list_name)
         list_article = NewsArticle.objects.filter(tips__exact=list_message.list_name)[:30]
@@ -65,6 +74,7 @@ def list_page(request, list_name):
         list_article[temp].img = img
         temp += 1
     context = {
+        'logo': logo,
         'list_article': list_article,
         'list_message': list_message
     }
@@ -73,6 +83,9 @@ def list_page(request, list_name):
 
 @cache_page(60 * 60 * 2)
 def author_page(request, author_id):
+    meta = request.META
+    url = meta['HTTP_X_FORWARDED_HOST']
+    logo = url.split('.')[1]
     url = request.path
     print(url.split('/')[1])
     try:
@@ -91,6 +104,7 @@ def author_page(request, author_id):
         author_article[temp].img = img
         temp += 1
     context = {
+        'logo': logo,
         'list_article': author_article,
         'list_message': list_message,
     }
@@ -107,6 +121,9 @@ def show_page(request, article_id):
     :param article_id:
     :return:
     """
+    meta = request.META
+    url = meta['HTTP_X_FORWARDED_HOST']
+    logo = url.split('.')[1]
     path_info = request.META.get('PATH_INFO')
     host = request.get_host()
     print('views path_info : %s' % path_info)
@@ -136,6 +153,7 @@ def show_page(request, article_id):
         article.context = text
         article.img = img
         context = {
+            'logo': logo,
             'article': article,
             'new_article': new_article,
             'bc_keyword': get_one_keyword(),
@@ -214,4 +232,7 @@ def get_one_keyword():
     line = random.randint(1, count-1)
     keyword = linecache.getlines(keywords_path)[line].strip('\n')
     return keyword
+
+
+
 

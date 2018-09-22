@@ -2,6 +2,10 @@ from django.urls import path, re_path
 from django.contrib.sitemaps.views import sitemap
 from . import views
 from .sitemaps import NewsArticleSitemap
+from django.views.static import serve
+from django.conf import settings
+
+# ... the rest of your URLconf goes here ...
 
 app_name = 'Model1'
 
@@ -19,5 +23,12 @@ urlpatterns = [
     path('author/<int:author_id>', views.author_page),
     path('spider/', views.spider_page),
     path('spider_data/<method>/', views.spider_data),
-    re_path(r'.+', views.random_page),
+    # re_path(r'.+', views.random_page),
 ]
+
+if settings.DEBUG:
+    urlpatterns += [
+        re_path(r'^(?P<path>.*)$', serve, {
+            'document_root': settings.MEDIA_ROOT,
+        }),
+    ]

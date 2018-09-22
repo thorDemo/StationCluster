@@ -3,6 +3,7 @@
 <html><!--<![endif]-->
 <head>
     {% load static %}
+    {% load thumbnail %}
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
@@ -19,8 +20,7 @@
     <!-- Apple -->
     <meta name="apple-mobile-web-app-title" content="{{ title }}">
     <link rel="stylesheet" media="all" href="{% static 'css/web.css' %}">
-    <link rel="stylesheet" media="all" href="{% static 'css/entry.css' %}">
-    <link href="{% static 'img/shortcut.ico' %}" rel="shortcut icon" type="image/x-icon">
+    <link href="Tools/logo/{{ logo }}.png" rel="shortcut icon" type="image/x-icon">
     <link rel="apple-touch-icon-precomposed" href="{% static 'img/logo_57x57.png' %}" sizes="57x57">
     <link rel="apple-touch-icon-precomposed" href="{% static 'img/logo_72x72.png' %}" sizes="72x72">
     <link rel="apple-touch-icon-precomposed" href="{% static 'img/logo_76x76.png' %}" sizes="76x76">
@@ -44,17 +44,23 @@
                     <div class="carousel-inner">
                         <div class="item">
                             <div class="banner" >
-                                <a target="_blank" href="#"><img src="{% static 'img/full' %}/{{ new_article.0.img.0 }}" alt="540"></a>
+                                {% thumbnail new_article.0.img.0 "485x210" quality=50 as im %}
+                                <a target="_blank" href="{{ new_article.0.url }}"><img src="{{ im.url }}" alt="540"></a>
+                                {% endthumbnail %}
                             </div>
                         </div>
                         <div class="item">
                             <div class="banner" >
-                                <a target="_blank" href="#"><img src="{% static 'img/full' %}/{{ new_article.1.img.0 }}" alt="540"></a>
+                                {% thumbnail new_article.1.img.0 "485x210" quality=50 as im %}
+                                <a target="_blank" href="{{ new_article.1.url }}"><img src="{{ im.url }}" alt="540"></a>
+                                {% endthumbnail %}
                             </div>
                         </div>
                         <div class="item active">
                             <div class="banner" >
-                                <a target="_blank" href="#"><img src="{% static 'img/full' %}/{{ new_article.2.img.0 }}" alt="540"></a>
+                                {% thumbnail new_article.2.img.0 "485x210" quality=50 as im %}
+                                <a target="_blank" href="{{ new_article.2.url }}"><img src="{{ im.url }}" alt="540"></a>
+                                {% endthumbnail %}
                             </div>
                         </div>
                     </div>
@@ -74,7 +80,10 @@
                 <div class="recommend-collection">
                     {% for line in list_article %}
                     <a class="collection" target="_blank" href="list_{{ line.list_name }}/">
-                        <img src="static/img/{{ line.list_img }}" alt="64">
+                        {% thumbnail line.photo "50x50" as im %}
+                        <img src="{{ im.url }}" alt="64">
+                        {% endthumbnail %}
+
                         <div class="name">{{ line.list_ch }}</div>
                     </a>
                     {% endfor %}
@@ -91,7 +100,9 @@
                         <ul class="note-list" >
                             <li id="" data-note-id="" class="have-img">
                                 <a class="wrap-img" href="{{ page.url }}" target="_blank">
-                                    <img data-echo="" class="img-blur" src="{% static 'img/full' %}/{{ page.img.0 }}" alt="120">
+                                    {% thumbnail page.img.0 "125x100" as im %}
+                                    <img data-echo="" class="img-blur" src="{{ im.url }}" alt="120">
+                                    {% endthumbnail %}
                                 </a>
                                 <div class="content">
                                     <a class="title" target="_blank" href="{{ page.url }}">{{ page.title }}</a>
@@ -120,9 +131,14 @@
             <div class="col-xs-7 col-xs-offset-1 aside">
                 <div class="board">
                     <a target="_blank" href="#"><img src="{% static 'img/banner-s-3.png' %}" alt="Banner s 3"></a>
+                    <a target="_blank" href="#"><img src="{% static 'img/banner-s-3.png' %}" alt="Banner s 3"></a>
+                    <a target="_blank" href="#"><img src="{% static 'img/banner-s-4.png' %}" alt="Banner s 4"></a>
                     <a target="_blank" href="#"><img src="{% static 'img/banner-s-4.png' %}" alt="Banner s 4"></a>
                     <a target="_blank" href="#"><img src="{% static 'img/banner-s-7.png' %}" alt="Banner s 7"></a>
+                    <a target="_blank" href="#"><img src="{% static 'img/banner-s-7.png' %}" alt="Banner s 7"></a>
                     <a target="_blank" href="#"><img src="{% static 'img/banner-s-5.png' %}" alt="Banner s 5"></a>
+                    <a target="_blank" href="#"><img src="{% static 'img/banner-s-5.png' %}" alt="Banner s 5"></a>
+                    <a target="_blank" href="#"><img src="{% static 'img/banner-s-6.png' %}" alt="Banner s 6"></a>
                     <a target="_blank" href="#"><img src="{% static 'img/banner-s-6.png' %}" alt="Banner s 6"></a>
                 </div>
                 <!-- 首页右侧 App 下载提示 -->

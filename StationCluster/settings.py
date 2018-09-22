@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'sorl.thumbnail',
 ]
 
 MIDDLEWARE = [
@@ -53,14 +55,14 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-
-MULTIPLE_UFL_CONFIG = {
-    'www.bjgirls.cn': 'StationCluster.urls_1',
-    'www.bjdirectory.cn': 'StationCluster.urls_2',
-    'www.bjflowers.cn': 'StationCluster.urls_2',
-    'www.example1.com': 'StationCluster.urls_2',
-    'www.example2.com': 'StationCluster.urls_2',
-}
+#
+# MULTIPLE_UFL_CONFIG = {
+#     'www.bjgirls.cn': 'StationCluster.urls_1',
+#     'www.bjdirectory.cn': 'StationCluster.urls_2',
+#     'www.bjflowers.cn': 'StationCluster.urls_2',
+#     'www.example1.com': 'StationCluster.urls_2',
+#     'www.example2.com': 'StationCluster.urls_2',
+# }
 
 ROOT_URLCONF = 'StationCluster.urls_1'
 # ROOT_HOSTCONF = 'StationCluster.hosts'
@@ -77,38 +79,40 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.request',
             ],
         },
     },
 ]
+
 
 WSGI_APPLICATION = 'StationCluster.wsgi.application'
 
 
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
+#
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'station',
+#         'USER': 'station',
+#         'PASSWORD': '123456',
+#         'HOST': '127.0.0.1',
+#         'PORT': '3339',
+#     }
+# }
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'station',
-        'USER': 'station',
+        'USER': 'root',
         'PASSWORD': '123456',
         'HOST': '127.0.0.1',
-        'PORT': '3339',
+        'PORT': '3306',
     }
 }
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': 'station',
-#         'USER': 'root',
-#         'PASSWORD': '123456',
-#         'HOST': '127.0.0.1',
-#         'PORT': '3306',
-#     }
-# }
 
 
 
@@ -155,5 +159,12 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "CPModel_1/templates/CPModel_1/static"),
     os.path.join(BASE_DIR, "CPModel_2/templates/CPModel_2/static"),
+    os.path.join(BASE_DIR, "CPModel_2/templates/CPModel_2/static/img"),
     os.path.join(BASE_DIR, "CPModel_3/templates/CPModel_3/static"),
 )
+
+THUMBNAIL_ALIASES = {
+    '': {
+        'avatar': {'size': (50, 50), 'crop': True},
+    },
+}

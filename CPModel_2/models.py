@@ -39,10 +39,10 @@ class ListArticle(models.Model):
     list_id = models.AutoField(primary_key=True)
     list_ch = models.CharField(max_length=100, default='美食')
     list_name = models.CharField(max_length=100)
-    list_img = models.CharField(max_length=200, default='7bee776a-73e0-472b-a3e1-20c53bd6aed6.jpg')
+    photo = models.ImageField(upload_to='CPModel_2/templates/CPModel_2/static/img', blank=True)
 
     def __str__(self):
-        return '%s :  %s' % (self.list_id, self.list_name)
+        return self.list_name
 
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
@@ -56,3 +56,15 @@ class ArticleAuthor(models.Model):
 
     def __str__(self):
         return 'id = %s author = %s' % (self.author_id, self.author_name)
+
+
+class DomainConf(models.Model):
+    domain = models.CharField(max_length=255, unique=True)
+    Template = models.CharField(max_length=255, default='CPModel_2')
+    index_title = models.CharField(max_length=255)
+    index_keywords = models.TextField()
+    index_description = models.TextField()
+
+    def __str__(self):
+        return '域名：%s  模板：%s' % (self.domain, self.Template)
+
