@@ -3,7 +3,7 @@ from random import choice
 import os
 from peewee import *
 
-db = MySQLDatabase("station", host='127.0.0.1', port=3306, user='station', passwd='123456', charset='utf8')
+db = MySQLDatabase("station", host='127.0.0.1', port=3339, user='station', passwd='123456', charset='utf8')
 
 
 class DomainConf(Model):
