@@ -12,6 +12,7 @@ import json
 from subprocess import PIPE, Popen
 from CPModel_2.spider import Spider
 
+
 # 配置信息
 ############
 path = os.path.split(os.path.realpath(__file__))[0]     # 根目录
