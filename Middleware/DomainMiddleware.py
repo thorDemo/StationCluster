@@ -7,8 +7,8 @@ class MultipleDomainMiddleware(MiddlewareMixin):
 
     def process_request(self, request):
         host = request.META.get('HTTP_X_FORWARDED_HOST')
-        # print(host)
-        # print(request.META)
+        print(host)
+        print(request.META)
         # url_config = getattr(settings, 'MULTIPLE_UFL_CONFIG', None)
         domain_conf = DomainConf.objects.all()
         if domain_conf:
