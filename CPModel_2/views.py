@@ -31,7 +31,7 @@ def index(request):
     :return:
     """
     meta = request.META
-    url = meta['HTTP_X_FORWARDED_HOST']
+    url = meta['HTTP_HOST']
     new_article = NewsArticle.objects.order_by('?')[:30]
     template = loader.get_template('CPModel_2/index.html')
     list_article = ListArticle.objects.order_by('-list_name')[:7]
