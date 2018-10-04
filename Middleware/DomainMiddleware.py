@@ -6,9 +6,8 @@ from CPModel_2.models import DomainConf
 class MultipleDomainMiddleware(MiddlewareMixin):
 
     def process_request(self, request):
-        host = request.META.get('HTTP_X_FORWARDED_HOST')
-        print(host)
-        print(request.META)
+        # host = request.META.get('HTTP_X_FORWARDED_HOST')
+        host = request.META.get('HTTP_HOST')
         # url_config = getattr(settings, 'MULTIPLE_UFL_CONFIG', None)
         domain_conf = DomainConf.objects.all()
         if domain_conf:
